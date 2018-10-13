@@ -1,0 +1,13 @@
+{
+  "name": "rpi-mungo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.mjs",
+  "scripts": {},
+  "author": "Michal Malanik",
+  "license": "ISC",
+  "dependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.7.0"
+  }
+}
