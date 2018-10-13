@@ -16,18 +16,19 @@ export default class Irrigation {
 	}
 
 	run() {
+		this._irrigationCycle();
 		setInterval(this._irrigationCycle.bind(this), IRRIGATION_CYCLE_INTERVAL);
 	}
 
-	_irrigationCycle() {
-		this._activatePump();
+	async _irrigationCycle() {
+		await this._activatePump();
 	}
 
 	async _activatePump() {
 		this._waterPump.writeSync(Gpio.HIGH);
 
 		for (let i = 0; i < IRRIGATION_CYCLE_DURATION; i++) {
-			
+
 			await this._sleep(100);
 		}
 
