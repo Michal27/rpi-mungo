@@ -12,7 +12,7 @@ export default class Irrigation {
 	constructor() {
 		this._waterPump = new Gpio(waterPumpPin, 'out');
 
-		thiw._waterPump.writeSync(Gpio.LOW);
+		this._waterPump.writeSync(Gpio.LOW);
 	}
 
 	run() {
@@ -28,7 +28,6 @@ export default class Irrigation {
 		this._waterPump.writeSync(Gpio.HIGH);
 
 		for (let i = 0; i < IRRIGATION_CYCLE_DURATION; i++) {
-
 			await this._sleep(100);
 		}
 
