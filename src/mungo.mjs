@@ -2,8 +2,8 @@ import OnOff from 'onoff';
 
 const Gpio = OnOff.Gpio;
 
-const IRRIGATION_CYCLE_INTERVAL = 7200000; //miliseconds = 2 hours
-const IRRIGATION_CYCLE_DURATION = 200; //20 seconds
+const IRRIGATION_CYCLE_INTERVAL = 3600000; //miliseconds = 1 hour
+const IRRIGATION_CYCLE_DURATION = 300; //30 seconds
 
 const waterPumpPin = 2;
 
@@ -13,11 +13,18 @@ export default class Irrigation {
 		this._waterPump = new Gpio(waterPumpPin, 'out');
 
 		this._waterPump.writeSync(Gpio.LOW);
+
+		this._irrigationInterval = null;
 	}
 
 	run() {
 		this._irrigationCycle();
-		setInterval(this._irrigationCycle.bind(this), IRRIGATION_CYCLE_INTERVAL);
+		this._irrigationInterval = setInterval(this._irrigationCycle.bind(this), IRRIGATION_CYCLE_INTERVAL);
+	}
+
+	stop() {
+		clearInterval(this._irrigationInterval);
+		this._waterPump.writeSync(Gpio.LOW);
 	}
 
 	async _irrigationCycle() {

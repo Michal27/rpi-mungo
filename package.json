@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.mjs",
   "scripts": {
-    "go": "node --experimental-modules index.mjs"
+    "go": "node --experimental-modules main.mjs &",
+    "stop": "node --experimental-modules stop.mjs"
   },
   "author": "Michal Malanik",
   "license": "ISC",
